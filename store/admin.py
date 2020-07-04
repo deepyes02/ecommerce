@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+# Import models and Register here to show on admin panel.
 
 from .models import *
 

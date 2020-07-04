@@ -98,3 +98,10 @@ h1,h2,h3,h4,h5,h6{
 .hidden{
 	display: none!important;
 }
+
+footer{
+  background-color: rgb(39, 139, 114);
+  text-align: center;
+  color: white;
+  margin: 100px 0px;
+}
