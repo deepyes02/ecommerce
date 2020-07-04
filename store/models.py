@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here. A customer has user, name and emag
+# Create your models here. A customer has user, name and email
 class Customer(models.Model):
   user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
   name = models.CharField(max_length=200, null=True)
@@ -9,7 +9,7 @@ class Customer(models.Model):
 
   def __str__(self):
     return self.name
-    
+
 class Product(models.Model):
   name = models.CharField(max_length=200, null=True)
   price = models.FloatField()
@@ -18,7 +18,7 @@ class Product(models.Model):
   
   def __str__(self):
     return self.name
-  
+
   @property
   def imageURL(self):
     try:
@@ -26,7 +26,7 @@ class Product(models.Model):
     except:
       url = ''
     return url
-  
+#cart page
 class Order(models.Model):
   customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)
   date_ordered = models.DateTimeField(auto_now_add=True)
@@ -58,7 +58,6 @@ class OrderItem(models.Model):
   def get_total(self):
     total = self.product.price * self.quantity
     return total
-
 
 class ShippingAddress(models.Model):
   customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)

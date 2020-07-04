@@ -15,7 +15,6 @@
             <input required class="form-control" type="email" name="email" placeholder="Email..">
           </div>
         </div>
-        
         <div id="shipping-info">
           <hr>
           <p>Shipping Information:</p>
@@ -40,9 +39,7 @@
       <div class="box-element hidden" id="payment-info">
         <small>Paypal Options</small>
       </div>
-
 		</div>
-		
   </div>
   <div class="col-lg-6">
     <div class="box-element">
@@ -50,20 +47,18 @@
       <hr>
       <h3>Order Summary</h3>
       <hr>
+      {% for item in items %}
       <div class="cart-row">
-        <div style="flex:2"><img class="row-image" src="{% static 'images/placeholder.png' %}"></div>
-        <div style="flex:2"><p>Product 1</p></div>
-        <div style="flex:1"><p>x 2</p></div>
-        <div style="flex:1"><p>$20.00</p></div>
+        <div style="flex:2"><img class="row-image" src="{{item.product.imageURL}}"></div>
+        <div style="flex:2"><p>{{item.product.name}}</p></div>
+        <div style="flex:1"><p>x {{item.quantity}}</p></div>
+        <div style="flex:1"><p>{{item.product.price|floatformat:2}}</p></div>
       </div>
-      <h5>Items:  </h5>
-      <h5>Total:  रू </h5>
-
+      {% endfor %}
+      <h5>Items: {{order.get_cart_items}} </h5>
+      <h5>Total:  रू {{order.get_cart_total|floatformat:2}} </h5>
     </div>
   </div>
-
-
-
   </div>
   <!-- COLUMNN-2 -->
 {% endblock content %}

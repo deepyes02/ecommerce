@@ -1,8 +1,8 @@
 from django.urls import path
 from . import views
 
-#Leave as empty string for base url
-#urlpatterns extension from root url.py
+# Leave as empty string for base url
+# store.url patterns extension from root url.py
 urlpatterns = [
   path('', views.store, name="store"),
   path('cart/', views.cart, name="cart"),

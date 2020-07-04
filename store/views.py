@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from .models import *
-
-# Create your views here.
+# Create your views here
 #store.html view
 def store(request):
   products = Product.objects.all()
+  context = {}
   context = {'products':products}
   return render(request, 'store/store.html', context)
 #cart.html view
@@ -16,7 +16,6 @@ def cart(request):
   else:
     items = []
     order = {'get_cart_total':0, 'get_cart_items':0}
-
   context = {'items':items, 'order':order}
   return render(request, 'store/cart.html', context)
 #checkout.html view
@@ -28,6 +27,5 @@ def checkout(request):
   else:
     items = []
     order = {'get_cart_total':0, 'get_cart_items':0}
-
   context = {'items':items, 'order':order}
   return render(request, 'store/checkout.html', context)
