@@ -64,8 +64,6 @@
   <!-- COLUMNN-2 -->
   <script type="text/javascript">
 
-  let total = '{{order.get_cart_total}}';
-
   let shipping = '{{order.shipping}}';
   //user-info, shipping-info, payment-info
 
@@ -100,13 +98,15 @@
 
   document.getElementById('payment-button').addEventListener('click', function(e){
     console.log("Payment Button Clicked");
+    
+    let total = '{{order.get_cart_total}}';
 
     let userFormData = {
       'name': null,
       'email':null,
       'total':total, 
-    },
-    shippingInfo = {
+    }
+    let shippingInfo = {
       'address':null,
       'city':null,
       'state':null,
@@ -115,9 +115,9 @@
 
     if(shipping != 'False'){
       shippingInfo.address = form.address.value
-      shippingInfo.city = form.address.value
-      shippingInfo.state = form.address.value
-      shippingInfo.zipcode = form.address.value
+      shippingInfo.city = form.city.value
+      shippingInfo.state = form.state.value
+      shippingInfo.zipcode = form.zipcode.value
     }
     if(user == 'AnonymousUser'){
       userFormData.name = form.name.value;
