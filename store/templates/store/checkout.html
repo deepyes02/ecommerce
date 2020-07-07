@@ -137,8 +137,15 @@
       body:JSON.stringify({'form':userFormData, 'shipping':shippingInfo}),
     }).then((response) => response.json())
     .then((data) => {
+      //console prompt
       console.log('Success: ', data);
+      //user prompt
       alert('Transaction of Rs '+ total+ ' completed');
+      //empty the cart
+      cart = {}
+      //pass the value of cart to the cookie
+      document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
+      //reload the page
       window.location.href="{%url 'store' %}"
     })
   })
