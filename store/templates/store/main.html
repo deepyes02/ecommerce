@@ -24,38 +24,35 @@
             }
         }
       }
-        return cookieValue;
+      return cookieValue;
       }
-        let csrftoken = getCookie('csrftoken');
+      
+      //cookie
+      let csrftoken = getCookie('csrftoken');
+      function getCookie(name){
+        //split cookie string and get individual names and values
+        var cookieArr = document.cookie.split(";");
 
-        //cookie
-        function getCookie(name){
-          //split cookie string and get individual names and values
-          var cookieArr = document.cookie.split(";");
-
-          //loop through array elements
-          for(let i=0; i< cookieArr.length; i++){
-            let cookiePair = cookieArr[i].split("=");
-            //remove whitespace and compare it with string
-            if(name == cookiePair[0].trim()){
-              //Decode cookie
-              return decodeURIComponent(cookiePair[1]);
-            }
+        //loop through array elements
+        for(let i=0; i< cookieArr.length; i++){
+          let cookiePair = cookieArr[i].split("=");
+          //remove whitespace and compare it with string
+          if(name == cookiePair[0].trim()){
+            //Decode cookie
+            return decodeURIComponent(cookiePair[1]);
           }
-          return null;
         }
+        return null;
+      }
         let cart = JSON.parse(getCookie('cart'));
-        if (cart == undefined){
+        if (cart == undefined || null){
           cart = {}
           console.log('Cart was created');
+          //set cookie name on console app and on the root so that it appears in every page of the domain
           document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
         }
         console.log('Cart:', cart)
-
-
-
-
-
+        
 
   </script>
 </head>
@@ -82,7 +79,7 @@
         <div class="form-inline my-2 my-lg-0">
           <a href="#"class="btn btn-warning">Login</a>
           <a href="{% url 'cart' %}">
-            <img id = "cart-icon" src="{% static 'images/cart.png'%}" alt="shopping-cart">
+            <img id = "cart-icon" src="{% static 'images/supermarket.svg'%}" alt="shopping-cart">
           </a>
           <p id="cart-total">{{cartItems}}</p>
           

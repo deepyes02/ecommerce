@@ -138,16 +138,10 @@
     }).then((response) => response.json())
     .then((data) => {
       console.log('Success: ', data);
-      alert('Transaction COmpleted');
+      alert('Transaction of Rs '+ total+ ' completed');
       window.location.href="{%url 'store' %}"
     })
-    
-
-
-
   })
-
-
-  
+ 
   </script>
 {% endblock content %}
