@@ -67,32 +67,8 @@ def processOrder(request):
 
   #adding info to the database for unlogged user
   else:
-    print("User is not logged in")
-    print("cookies: ", request.COOKIES)
-    #get the name and email
-    name = data['form']['name']
-    email = data['form']['email']
-
-    cookieData = cookieCart(request)
-    items = cookieData['items']
-
-    customer, created = Customer.objects.get_or_create(email=email)
-    customer.name = name
-    customer.save()
-
-    order = Order.objects.create(customer=customer, complete=False)
-
-    for item in items:
-      product = Product.objects.get(id=item['product']['id'])
-      orderItem = OrderItem.objects.create(
-        product=product,
-        order=order,
-        quantity=item['quantity']
-      )
-  ##position of this block has changed from before.
-  #logic: regardless of logged in or not logged in,
-  #we use the confirm total and make sure everything
-  #is correct
+    customer, order = guestOrder(request, data)
+  
   total = float(data['form']['total'])
   order.transaction_id = transaction_id
 
