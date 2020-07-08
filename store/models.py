@@ -1,6 +1,18 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from django.contrib.auth.forms import UserCreationForm
+from django import forms
+
+# form code here
+class CreateUserForm(UserCreationForm):
+  class Meta:
+    model = User
+    fields = ['username', 'email', 'password1', 'password2']
+  
+
+
+
 # Create your models here. A customer has user, name and email
 class Customer(models.Model):
   user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
