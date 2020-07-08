@@ -3,6 +3,8 @@ from django.urls import path, include
 ##to render images
 from django.conf.urls.static import static
 from django.conf import settings
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('store.urls')),
